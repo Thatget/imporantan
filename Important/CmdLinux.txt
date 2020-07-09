@@ -1,0 +1,175 @@
+1. Important steps when install magento on ubuntu
+
+-  sudo a2enmod rewrite
+cp -r /path/to/directory /path/to/location/new-name
+
+Add User to the Group
+sudo usermod -a -G group1,group2 user1
+From <https://vinasupport.com/quan-ly-user-group-tren-linux-bang-command-line/> 
+
+2. Command MySql
+- Import file.sql to database:   sudo mysql -u root -p magento2 <  /var/www/mage234.com/public_html/mikastore
+- Tạo và cấp quyền cho user truy cập database:   GRANT ALL ON noctua.* TO 'admin'@'localhost' IDENTIFIED BY 'admin123' WITH GRANT OPTION;
+3. 
+
+
+#~ MAGENTO START 69dd2b02e1f3a65918182048ea4e29979a849d8942e8f53ed20a4bf10e529b36
+* * * * * /usr/bin/php /var/www/html/bin/magento cron:run 2>&1 | grep -v "Ran jobs by schedule" >> /var/www/html/var/log/magento.cron.log
+* * * * * /usr/bin/php /var/www/html/update/cron.php >> /var/www/html/var/log/update.cron.log
+* * * * * /usr/bin/php /var/www/html/bin/magento setup:cron:run >> /var/www/html/var/log/setup.cron.log
+#~ MAGENTO END 69dd2b02e1f3a65918182048ea4e29979a849d8942e8f53ed20a4bf10e529b36
+
+
+sudo chmod -R 777 ./var/ ./pub/static ./generated/ ./var/cache ./var/log
+
+
+sudo a2enmod rewrite
+sudo nano /etc/apache2/sites-available/000-default.conf
+
+<Directory /var/www/html>
+    Options Indexes FollowSymLinks MultiViews
+    AllowOverride All
+    Require all granted
+</Directory>
+
+
+sudo update-alternatives --set phar /usr/bin/phar7.1
+sudo update-alternatives --set phar.phar /usr/bin/phar.phar7.1
+sudo update-alternatives --set phpize /usr/bin/phpize7.1
+sudo update-alternatives --set php-config /usr/bin/php-config7.1
+
+Change Port: sudo nano /etc/apache2/ports.conf
+
+Install php7.2
+sudo apt install php7.2-common php7.2-cli php7.2-fpm php7.2-opcache php7.2-gd php7.2-mysql php7.2-curl php7.2-intl php7.2-xsl php7.2-mbstring php7.2-zip php7.2-bcmath php7.2-soap
+Config php.ini:
+sudo nano /etc/php/7.2/apache2/php.ini
+From <https://websiteforstudents.com/install-magento-2-using-composer-on-ubuntu-16-04-18-04-with-apache2-mariadb-and-php-7-1-support/> 
+Cannot show phpinfo.php: 
+sudo apt purge libapache2-mod-php7.2 libapache2-mod-php
+Then
+sudo apt install libapache2-mod-php7.2 libapache2-mod-php
+sudo a2enmod php7.2
+sudo systemctl restart apache2.service
+
+Fix error phpmyadmin:
+sudo nano /usr/share/phpmyadmin/libraries/sql.lib.php
+Fix:	(count($analyzed_sql_results['select_expr'] == 1)	To	((count($analyzed_sql_results['select_expr']) == 1)
+
+Install composer ---
+From <https://www.digitalocean.com/community/tutorials/how-to-install-and-use-composer-on-ubuntu-18-04> 
+
+sudo apt update
+sudo apt install curl php-cli php-mbstring git unzip
+cd ~
+curl -sS https://getcomposer.org/installer -o composer-setup.php
+Go to ---->>   https://composer.github.io/pubkeys.html  ----> copy key on line 3, Example key = XXXXXXXXXX
+HASH=XXXXXXXXXX
+php -r "if (hash_file('SHA384', 'composer-setup.php') === '$HASH') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+Sau đó sẽ có output  = Installer verified
+Nếu output =  Installer corrupt 
+Chạy 
+sudo wget https://github.com/docker/compose/releases/download/1.25.4/docker-compose-$(uname -s)-$(uname -m) -O /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+
+Khi ouput = Installer verified
+sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+
+=> Output = All settings correct for using Composer
+
+
+
+
+How create a site:
+
+sudo mkdir -p /var/www/mysite/public_html	--Create folder
+sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/twosite.conf	--Copy virtual host
+sudo nano /etc/apache2/sites-available/twosite.conf	--Config host
+
+ServerName mysite
+ServerAlias www.mysite
+ServerAdmin webmaster@mysite
+DocumentRoot /var/www/mysite/public_html
+sudo a2ensite mysite.conf	--Turn on Virtual host
+sudo systemctl reload apache2	--Reload apache2
+sudo nano /var/www/mysite/public_html/index.html	--Check
+C:\windows\system32\drivers\etc\hosts	--Change host in real pc
+
+Set permission for magento 2:
+cd <your Magento install dir>
+
+sudo find . -type f -exec chmod 644 {} \;
+sudo find . -type d -exec chmod 755 {} \;
+sudo find ./var -type d -exec chmod 777 {} \; 
+sudo find ./pub/media -type d -exec chmod 777 {} \;
+sudo find ./pub/static -type d -exec chmod 777 {} \;
+sudo chmod 777 ./app/etc
+sudo chmod 644 ./app/etc/*.xml
+sudo chmod u+x bin/magento
+sudo chmod -R 777 ./var/ ./pub/static ./generated/ ./var/cache ./var/log
+
+sudo find . -type f -exec chmod 644 {} \;	644 permission for files
+sudo find . -type d -exec chmod 755 {} \;	755 permission for directory
+sudo find ./var -type d -exec chmod 777 {} \;	777 permission for var folder
+sudo find ./pub/media -type d -exec chmod 777 {} \;	
+sudo find ./pub/static -type d -exec chmod 777 {} \;	
+sudo chmod 777 ./app/etc	
+sudo chmod 644 ./app/etc/*.xml	
+	
+sudo chmod -R 777 ./var/ ./pub/static ./generated/ ./var/cache ./var/log	
+
+Overwrite on ubuntu:
+cp -R	From <https://stackoverflow.com/questions/28882842/cp-command-in-ubuntu-does-not-overwrite-the-existing-file>
+
+1. Nén và giải nén file có đuôi .gz
+1.1 Nén
+#gzip [tên file]
+1.2 Giải nén
+#gunzip [tên file]
+2. Gom và bung tập tin hoặc thư mục đuôi .tar
+2.1 Gom
+#tar -cvf [tênfile.tar] [file1] [file2] …
+2.2 Bung
+#tar -xvf [file.tar]
+2.3 Nén và Gom
+#tar -zcvf [file.tar.gz] file1 file2 …
+2.4 Giải nén và bung
+#tar -zxvf [file.tar.gz]
+3. Giải nén file có đuôi .bz2
+#tar xjvf [file.tar.bz2]
+Các định dạng khác :
+1. ZIP
+1.1 Nén một thư mục, sử dụng:
+# zip -r folder.zip folder
+1.2 Giải nén, sử dụng:
+# unzip file.zip
+2. TAR.GZ
+2.1 Nén một thư mục dạng .gz, sử dụng:
+# tar -zcf folder.tar.gz folder
+2.2 Giải nén, sử dụng:
+# tar -zxvf file.tar.gz
+3. TAR.BZ2
+3.1 Nén một thư mục dạng .bz2, sử dụng:
+$ tar -jcf folder.tar.bz2 folder
+3.2 Giải nén, sử dụng:
+$ tar -jxvf file.tar.bz2
+-Để biết thêm cách sử dụng lệnh man.
+From <https://esc.vn/nen-va-giai-nen-trong-linux-zip-tar-gz-va-tar-bz2/> 
+
+
+if(in_array($_SERVER['REMOTE_ADDR'],array('222.252.106.93'))){
+    var_dump("XXXXXXXXXXXXXXX");
+}else {
+    
+}
+--------------------
+Create xlog file:
+
+public function xlog($message = 'null')
+    {
+        $log = print_r($message, true);
+        $logger = new \Zend\Log\Logger;
+        $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/test.log');
+        $logger->addWriter($writer);
+        $logger->info($log);
+    }

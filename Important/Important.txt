@@ -1,0 +1,37 @@
+public function xlog($message = 'null')
+    {
+        $log = print_r($message, true);
+        $logger = new \Zend\Log\Logger;
+        $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/test.log');
+        $logger->addWriter($writer);
+        $logger->info($log);
+    }
+
+
+
+
+if(in_array($_SERVER['REMOTE_ADDR'],array('ID of your computer'))){
+			var_dump("What you need !");
+			die();
+		}
+
+
+
+grep -inr 'text search' path/to/folder
+
+ini_set('error_reporting', E_ERROR);
+register_shutdown_function("fatal_handler");
+function fatal_handler() {
+    $error = error_get_last();
+    echo("<pre>");
+    print_r($error);
+}
+
+register_shutdow_...
+
+
+core_config_data sửa đường dẫn!
+
+display error : 
+	(app/bootstrap.php)	#ini_set('display_errors', 1); => ini_set('display_errors', 1);
+	(pub/errors/)	local.xml.sample => local.xml

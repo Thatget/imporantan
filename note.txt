@@ -18,3 +18,5 @@ Timezone.php    private function appendTimeIfNeeded($date, $includeTime)
 3,after change visibility: reindex to apply change !
 
 4,php composer.phar install
+5--SiteInfo!:
+https://docs.google.com/spreadsheets/d/16sNjgTXEB97ZiTob21i28gRTktujd6BXKtqJjcHtrqk/edit#gid=443575310

@@ -1,0 +1,20 @@
+1,Magento\Framework\Stdlib\DateTime\Timezone;
+Timezone.php    private function appendTimeIfNeeded($date, $includeTime)
+    {
+        if ($includeTime && !preg_match('/\d{1}:\d{2}/', $date)) {
+            $date .= " 0:00am";(chuyen thanh ' 0:00')
+        }
+        return $date;
+    }
+
+
+2,catalog_product_view.xml PluginCompany_Pdf :
+
+<referenceContainer name="product.info.social">
+            <block class="PluginCompany\ProductPdf\Block\Link" name="pdf_link" after="product.info.sharing" />
+        </referenceContainer>
+
+
+3,after change visibility: reindex to apply change !
+
+4,php composer.phar install

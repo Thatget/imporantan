@@ -36,6 +36,8 @@ Timezone.php    private function appendTimeIfNeeded($date, $includeTime)
     }
 };
 6, them image in pub/media/revslider/;
-
+8,edit file(Nwdthemes_Revslider/model/Revslider/RevsliderOutput.php) 
+        change echo RS_T4.'err += "To fix this, you can try to re-deploy static content'."\n";
+        =>     echo RS_T4.'err += "To fix this, you can try to re-deploy static content";'."\n";
 7--SiteInfo!:
 https://docs.google.com/spreadsheets/d/16sNjgTXEB97ZiTob21i28gRTktujd6BXKtqJjcHtrqk/edit#gid=443575310

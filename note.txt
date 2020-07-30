@@ -17,6 +17,25 @@ Timezone.php    private function appendTimeIfNeeded($date, $includeTime)
 
 3,after change visibility: reindex to apply change !
 
-4,php composer.phar install
-5--SiteInfo!:
+4,php composer.phar install;
+
+5,requirejs-config.js(Nwdthemes_Revslider/view/base/):
+;;;         var config = {
+    paths: {
+        revolutionTools:        'Nwdthemes_Revslider/public/assets/js/rbtools.min',
+        rs6:                    'Nwdthemes_Revslider/public/assets/js/rs6.min',
+        vimeoPlayer:            'Nwdthemes_Revslider/public/assets/js/vimeo.player.min'
+    },
+    shim: {
+        rs6: {
+            deps: ['jquery', 'revolutionTools']
+        },
+        revolutionTools: {
+            deps: ['jquery']
+        }
+    }
+};
+6, them image in pub/media/revslider/;
+
+7--SiteInfo!:
 https://docs.google.com/spreadsheets/d/16sNjgTXEB97ZiTob21i28gRTktujd6BXKtqJjcHtrqk/edit#gid=443575310

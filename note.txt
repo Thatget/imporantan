@@ -41,6 +41,6 @@ Timezone.php    private function appendTimeIfNeeded($date, $includeTime)
         =>     echo RS_T4.'err += "To fix this, you can try to re-deploy static content";'."\n";
 9,/home/bssdev/public_html/app/code/Nwdthemes/Revslider/view/base/web/public/assets/css/rs6.css
     change: rs-module-wrap {position:relative;z-index: 1;width:100%; display: block;}
-    to    : rs-module-wrap {position:relative;z-index: 1;width:50%; display: block;}
+    to    : rs-module-wrap {position:relative;z-index: 1;width:50%;}
 7--SiteInfo!:
 https://docs.google.com/spreadsheets/d/16sNjgTXEB97ZiTob21i28gRTktujd6BXKtqJjcHtrqk/edit#gid=443575310

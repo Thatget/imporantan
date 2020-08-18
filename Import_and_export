@@ -1,0 +1,4 @@
+mysql -u user -p database_name < backup_database_130819.sql
+(Sẽ xóa toàn bộ table in database database_name rồi import bản backkup vào)
+mysqldump -u user -p database_name> backupdatabase_200318.sql
+(tạo ra file backup từ databse_name)

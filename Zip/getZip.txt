@@ -1,0 +1,6 @@
+
+zip -r m2dev.zip /home/micaligh/public_html/m2dev 
+-x 
+pub/static/_cache/**\ pub/static/adminhtml/**\ pub/static/frontend/**\
+pub/media/**\ generated/**\ var/log/**\* var/report/**\* var/view_preprocessed/**\* 
+noRemove/**\* var/cache/**\*

@@ -1,4 +1,4 @@
-
+<Micalighting !>
 1. Important steps when install magento on ubuntu
 
 -  sudo a2enmod rewrite
